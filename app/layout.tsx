@@ -22,9 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={raleway.className}>
         <HeaderApp />
-        <div className="w-3/4 mx-auto flex items-center justify-center ">
-          {children}
-        </div>
+        <div className="w-3/4 mx-auto">{children}</div>
       </body>
     </html>
   );

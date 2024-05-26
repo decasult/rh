@@ -58,3 +58,11 @@ body {
 .input-decasult {
   @apply text-xs  text-decasult-graydark border border-decasult-graylight rounded-sm w-full p-2 mt-2 mb-1 h-[38px] outline-none focus:border-decasult-graydark disabled:bg-gray-100;
 }
+
+.input-decasult-error {
+  @apply border-red-400 !important;
+}
+
+.label-error {
+  @apply text-[10px] text-decasult-alertred font-medium my-0;
+}

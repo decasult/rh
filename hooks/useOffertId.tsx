@@ -1,6 +1,8 @@
 import { Offert } from "@/types/offert";
 import { useEffect, useState } from "react";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export default function useOffertId({ offertId }: { offertId: string | null }) {
   const [offert, setOffert] = useState<Offert>();
   const [loading, setLoading] = useState(true);
@@ -10,10 +12,10 @@ export default function useOffertId({ offertId }: { offertId: string | null }) {
     if (!offertId) return;
     let published = "";
     const dataOffert = await fetch(
-      `http://localhost:3000/api/getinfo?offertId=${offertId}`
+      BASE_URL + `/api/getinfo?offertId=${offertId}`
     );
     const offert = await dataOffert.json();
-    const datePublished = offert.job.creation_date || new Date();
+    const datePublished = offert?.job?.creation_date || new Date();
     if (!offert.error) {
       if (offert.job.creation_date) {
         published = new Date(datePublished).toLocaleDateString("fr-FR", {

@@ -8,8 +8,17 @@ import useOffertId from "@/hooks/useOffertId";
 import { OffertPage } from "@/types/offert";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { Suspense } from "react";
 
-export default function Offert() {
+export default function Searchbar() {
+  return (
+    <Suspense>
+      <Offert />
+    </Suspense>
+  );
+}
+
+function Offert() {
   const [page, setPage] = useState<OffertPage>("Offre");
   const searchParams = useSearchParams();
   const offertId = searchParams.get("id");
@@ -21,33 +30,38 @@ export default function Offert() {
   };
 
   return (
-    <main className=" mt-5 mb-10 w-full border rounded-md bg-white min-h-lvh p-10">
-      {loading ? (
-        <Loading text="Chargement de l'offre" />
-      ) : (
-        <>
-          {offert?.title && (
-            <HeaderOffert
-              title={offert?.title}
-              city={offert?.facility_city}
-              pushished={offert?.published}
-              hasRedirect={true}
-              textButton={page === "Postuler" ? "Offre" : "Postuler"}
-              onClick={() => handlePage({ page })}
-            />
-          )}
-          {page === "Offre" ? (
-            <OffertDescription
-              offert={offert}
-              handlePage={() => handlePage({ page })}
-            />
-          ) : (
-            <>
-              <Apply />
-            </>
-          )}
-        </>
-      )}
-    </main>
+    <>
+      <main className=" mt-5 mb-5 w-full border rounded-md bg-white min-h-lvh p-10">
+        {loading ? (
+          <Loading text="Chargement de l'offre" />
+        ) : (
+          <>
+            {offert?.title && (
+              <HeaderOffert
+                title={offert?.title}
+                city={offert?.facility_city}
+                pushished={offert?.published}
+                hasRedirect={true}
+                textButton={page === "Postuler" ? "Offre" : "Postuler"}
+                onClick={() => handlePage({ page })}
+              />
+            )}
+            {page === "Offre" ? (
+              <OffertDescription
+                offert={offert}
+                handlePage={() => handlePage({ page })}
+              />
+            ) : (
+              <>
+                <Apply job_id={offert?.id} />
+              </>
+            )}
+          </>
+        )}
+      </main>
+      <div className="text-gray-500 text-sm text-center mt-2 mb-5 font-semibold">
+        Powered by @DECASULT
+      </div>
+    </>
   );
 }

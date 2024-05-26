@@ -1,6 +1,5 @@
 import { Offert, OffertPage } from "@/types/offert";
 import ButtonApply from "./ButtonApply";
-import HeaderOffert from "./HeaderOffert";
 
 export default function OffertDescription({
   offert,
@@ -29,9 +28,6 @@ export default function OffertDescription({
       <div className="my-5 text-justify text-sm offre">
         {offert?.complementary_description && (
           <>
-            <h2 className="mt-5 text-lg font-semibold text-decasult-graydark underline">
-              Offre d'emploi
-            </h2>
             <p
               dangerouslySetInnerHTML={{
                 __html: `<div>${offert?.complementary_description}</div>`,
@@ -44,7 +40,7 @@ export default function OffertDescription({
       <div className="flex items-center justify-center mt-10">
         <ButtonApply
           text="Postuler"
-          onClick={() => handlePage({ page: "Apply" })}
+          onClick={() => handlePage({ page: "Postuler" })}
         />
       </div>
     </div>
