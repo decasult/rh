@@ -1,11 +1,21 @@
 "use client";
 
-import { ApplyOffert } from "@/types/offert";
+import { ApplyOffert, OffertPage } from "@/types/offert";
+import { toast } from "sonner";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
 import LabelError from "./LabelError";
+import Loading from "./Loading";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-export default function Apply({ job_id }: { job_id: string | undefined }) {
+export default function Apply({
+  job_id,
+  setPage,
+}: {
+  job_id: string | undefined;
+  setPage: (page: OffertPage) => void;
+}) {
+  const [loadingApply, setLoadingApply] = useState(false);
   const {
     register,
     handleSubmit,
@@ -15,8 +25,7 @@ export default function Apply({ job_id }: { job_id: string | undefined }) {
   });
 
   const onSubmit: SubmitHandler<ApplyOffert> = async (data) => {
-    console.log(data);
-
+    setLoadingApply(true);
     const formApplication = new FormData();
     // @ts-ignore
     formApplication.append("cv", data.cv[0]);
@@ -29,15 +38,22 @@ export default function Apply({ job_id }: { job_id: string | undefined }) {
     formApplication.append("cell_phone_number", data.cell_phone_number);
     formApplication.append("terms", data.terms);
 
-    fetch(BASE_URL + "/api/apply", {
+    const response = await fetch(BASE_URL + "/api/apply", {
       method: "POST",
       body: formApplication,
     });
+    const application = await response.json();
+    console.log(application);
+    toast.success("Votre candidature a été envoyée avec succès", {
+      description: "Nous vous remercions pour votre intérêt",
+    });
+    setPage("Offre");
+    window.scrollTo(0, 0);
+    setLoadingApply(false);
   };
 
   return (
     <>
-      {}
       <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="first_name" className="label-decasult">
@@ -205,12 +221,16 @@ export default function Apply({ job_id }: { job_id: string | undefined }) {
         </div>
 
         <div className="flex items-center justify-center mt-5">
-          <button
-            type="submit"
-            className="w-32 h-10 rounded-sm border text-white font-semibold bg-decasult-primary hover:bg-decasult-primaryactive"
-          >
-            Postuler
-          </button>
+          {loadingApply ? (
+            <Loading text="Nous enregistrons votre candidature" />
+          ) : (
+            <button
+              type="submit"
+              className="w-32 h-10 rounded-sm border text-white font-semibold bg-decasult-primary hover:bg-decasult-primaryactive"
+            >
+              Postuler
+            </button>
+          )}
         </div>
       </form>
     </>

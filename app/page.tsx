@@ -1,40 +1,72 @@
 "use client";
 
-import ButtonApply from "@/components/ButtonApply";
-import { useRouter } from "next/navigation";
+import Apply from "@/components/Apply";
+import HeaderOffert from "@/components/HeaderOffert";
+import Loading from "@/components/Loading";
+import OffertDescription from "@/components/OffertDescription";
+import useOffertId from "@/hooks/useOffertId";
+import { OffertPage } from "@/types/offert";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { Suspense } from "react";
+import NotFound from "@/components/NotFound";
 
-export default function Home() {
-  const router = useRouter();
+export default function Searchbar() {
+  return (
+    <Suspense>
+      <Home />
+    </Suspense>
+  );
+}
+
+function Home() {
+  const [page, setPage] = useState<OffertPage>("Offre");
+  const searchParams = useSearchParams();
+  const offertId = searchParams.get("id");
+  const { offert, loading } = useOffertId({ offertId: offertId });
+
+  const handlePage = ({ page }: { page: OffertPage }) => {
+    const newPage = page === "Offre" ? "Postuler" : "Offre";
+    setPage(newPage);
+  };
+
+  if (!offertId) {
+    return <NotFound />;
+  }
+
   return (
     <>
-      <main className=" mt-5 mb-10 w-full border rounded-md bg-white min-h-screen p-10">
-        <div className="flex items-center justify-between pb-3">
-          <h1 className="text-3xl font-semibold text-decasult-graydark">
-            Contrôleur de projet
-          </h1>
-          <ButtonApply text="Postuler" onClick={() => router.push("/offert")} />
-        </div>
-        <div className="flex items-center justify-start gap-3 text-sm text-decasult-btnborder">
-          <p>Temp partiel</p>|<p>Publié le 08 avril</p>
-        </div>
-        <hr className=" mt-5 rounded-sm border-decasult-primary" />
-        <div>
-          <h2 className="mt-10 text-lg font-semibold text-decasult-graydark">
-            Description
-          </h2>
-        </div>
-
-        <div>
-          <h2 className="mt-10 text-lg font-semibold text-decasult-graydark">
-            {"Offre d'emploi"}
-          </h2>
-          <div></div>
-        </div>
-
-        <div className="flex items-center justify-center mt-10">
-          <ButtonApply text="Postuler" />
-        </div>
+      <main className="mt-5 mb-5 w-full border rounded-md bg-white min-h-lvh p-10">
+        {loading ? (
+          <Loading text="Chargement de l'offre" />
+        ) : (
+          <>
+            {offert?.title && (
+              <HeaderOffert
+                title={offert?.title}
+                city={offert?.facility_city}
+                pushished={offert?.published}
+                hasRedirect={true}
+                textButton={page === "Postuler" ? "Offre" : "Postuler"}
+                onClick={() => handlePage({ page })}
+              />
+            )}
+            {page === "Offre" ? (
+              <OffertDescription
+                offert={offert}
+                handlePage={() => handlePage({ page })}
+              />
+            ) : (
+              <>
+                <Apply job_id={offert?.id} setPage={setPage} />
+              </>
+            )}
+          </>
+        )}
       </main>
+      <div className="text-gray-500 text-sm text-center mt-2 mb-5 font-semibold">
+        Powered by @DECASULT
+      </div>
     </>
   );
 }

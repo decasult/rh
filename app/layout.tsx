@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import HeaderApp from "@/components/HeaderApp";
 import { Raleway } from "next/font/google";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "DECASULT RH",
@@ -20,9 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/decasultico.jpg" />
+      </head>
       <body className={raleway.className}>
         <HeaderApp />
-        <div className="w-3/4 mx-auto">{children}</div>
+        <Toaster richColors closeButton />
+        <div className="w-full md:w-3/5 mx-auto">{children}</div>
       </body>
     </html>
   );
