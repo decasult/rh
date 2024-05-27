@@ -28,6 +28,7 @@ function Home() {
   const handlePage = ({ page }: { page: OffertPage }) => {
     const newPage = page === "Offre" ? "Postuler" : "Offre";
     setPage(newPage);
+    window.scrollTo(0, 0);
   };
 
   if (!offertId) {
@@ -36,7 +37,7 @@ function Home() {
 
   return (
     <>
-      <main className="mt-5 mb-5 w-full border rounded-md bg-white min-h-lvh p-10">
+      <main className="mt-5 mb-5 w-full border rounded-md bg-white min-h-lvh px-5 md:px-10 py-10">
         {loading ? (
           <Loading text="Chargement de l'offre" />
         ) : (

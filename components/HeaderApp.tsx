@@ -7,7 +7,7 @@ export default function HeaderApp() {
       <div className="w-full md:w-3/5 mx-auto flex items-center justify-between">
         <div>
           <Link href="https://www.decasult.com/">
-            <LogoDecasult className="h-8 w-auto ml-1" />
+            <LogoDecasult className="h-8 w-auto ml-4 md:ml-2" />
           </Link>
         </div>
         <div>
