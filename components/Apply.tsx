@@ -194,7 +194,7 @@ export default function Apply({
             className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             <span
-              className={`text-sm text-justify mt-5 cursor-pointer ${
+              className={`text-sm text-decasult-graydark text-justify mt-5 cursor-pointer ${
                 errors["terms"] && "text-red-500"
               }`}
             >

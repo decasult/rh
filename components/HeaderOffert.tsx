@@ -17,7 +17,7 @@ export default function HeaderOffert({
 }) {
   return (
     <>
-      <div className="flex items-center justify-between pb-3 ">
+      <div className="flex flex-col gap-3 md:flex-row items-center justify-between pb-3 ">
         <h1 className="text-3xl font-semibold text-decasult-graydark">
           {title}
         </h1>

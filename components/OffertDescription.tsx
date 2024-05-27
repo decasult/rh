@@ -20,6 +20,7 @@ export default function OffertDescription({
               dangerouslySetInnerHTML={{
                 __html: `<div>${offert?.description}</div>`,
               }}
+              className="text-decasult-graydark"
             ></p>
           </>
         )}
@@ -32,6 +33,7 @@ export default function OffertDescription({
               dangerouslySetInnerHTML={{
                 __html: `<div>${offert?.complementary_description}</div>`,
               }}
+              className="text-decasult-graydark"
             ></p>
           </>
         )}
