@@ -5,7 +5,7 @@ import { Raleway } from "next/font/google";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "DECASULT RH",
+  title: "Recrutement - Decasult",
   description: "",
 };
 
