@@ -194,25 +194,28 @@ export default function Apply({
             className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             <span
-              className={`text-sm text-decasult-graydark text-justify mt-5 cursor-pointer ${
+              className={`text-xs text-decasult-graydark text-justify mt-5 cursor-pointer ${
                 errors["terms"] && "text-red-500"
               }`}
             >
-              Je donne mon consentement et autorise DECASULT, ainsi que ses
-              filiales, agents et mandataires respectifs, à collecter, mettre à
-              jour, conserver et utiliser mes informations personnelles dans le
-              cadre du processus de recrutement de DECASULT et à contacter les
-              références fournies.
-              <br /> Les informations recueillies lors d’une candidature seront
+              Je consens expressément à ce que DECASULT INC. collecte, utilise,
+              mette à jour, transmette, si requis mes informations personnelles
+              dans le cadre du processus de recrutement de DECASULT et à
+              contacter les références fournies et ce conformément à la loi sur
+              la protection des renseignements personnels dans le secteur privé
+              (LPRPSP) du Québec.
+              <br />
+              Les informations recueillies lors d’une candidature seront
               utilisées pour évaluer l’adéquation du candidat avec les postes
-              actuels et futurs chez DECASULT. Ces données seront conservées
-              pendant une durée maximale de 2 ans. Si DECASULT souhaite les
-              conserver au-delà de cette période, le candidat sera contacté pour
-              obtenir son accord. <br /> Si le candidat désire à tout moment que
-              DECASULT supprime ou partage les informations collectées, il peut
-              en faire la demande par courriel à l’adresse suivante :
-              rh@decasult.com. <br />
-              Pour toute information complémentaire concernant le traitement des
+              actuels et futurs chez DECASULT. Ces données seront
+              conservéespendant une durée maximale de 2 ans. Si DECASULT
+              souhaite les conserver au-delà de cette période, le candidat sera
+              contacté pour obtenir son accord.
+              <br />
+              Si le candidat désire à tout moment que DECASULT supprime ou
+              partage les informations collectées, il peut en faire la demande
+              par courriel à l’adresse suivante : rh@decasult.com. <br /> Pour
+              toute information complémentaire concernant le traitement des
               données personnelles, veuillez consulter la Politique de
               confidentialité de DECASULT, disponible sur le site internet de
               l’entreprise.
