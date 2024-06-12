@@ -143,7 +143,7 @@ export default function Apply({
         </div>
         <div>
           <label
-            className="label-decasult block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="label-decasult block mb-2 text-sm font-medium text-gray-900 "
             htmlFor="file_input"
           >
             Cuirriculum Vitae <span className="text-[#eb1c24] text-lg">*</span>
@@ -164,7 +164,7 @@ export default function Apply({
         </div>
         <div>
           <label
-            className="label-decasult block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="label-decasult block mb-2 text-sm font-medium text-gray-900 "
             htmlFor="file_input"
           >
             Lettre de présentation
